@@ -14,8 +14,6 @@ data = pd.read_csv('antibiotics_data.csv',
 header ensures first row in csv file becomes dataframe headers,
 na_values: all 0s converted to NaN'''
 
-
-print (data)
 #Check that data has read in correctly. 
 #Look for number and title of columns
 '''need to put in error thing'''
@@ -41,8 +39,6 @@ final_data['items_per_1000'] = final_data['y_items'] / final_data['patients/1000
 #y_items is number of antibiotics pescribed by each GP per month/year shown in date 
 #Creates new column in dataframe with perscriptions per thousand patients
 
-
-
 final_data['date'] = pd.to_datetime(final_data['date'], format='%Y-%m-%d') 
 #Changes date column into datetime format recognised by python
 
@@ -51,7 +47,8 @@ final_data['date'] = pd.to_datetime(final_data['date'], format='%Y-%m-%d')
 #final_data.groupby(pd.Grouper(key= 'date', freq='Y')).mean()
 
 
-line_graph = final_data.groupby(pd.Grouper(key= 'date', freq='Y')).mean()['items_per_1000'].plot(legend=True) 
+line_graph = final_data.groupby(pd.Grouper(key= 'date', freq='Y'))
+                        .mean()['items_per_1000'].plot(legend=True) 
 '''grouby groups items from the dataframe as specified. 
 #Grouper seperates the date column and groups everything just by year
 #.mean then finds the mean of each found line and the output of the plot is the items_per_thousand column of the dataframe'''
