@@ -14,18 +14,16 @@ Before you start, you will need to download the 'items for antibacterial drugs p
 
 After addtional packages have been imported, the script will attempt to load data from the 'items for antibacterial drugs per 1,000 patients on list.csv' file and put it into a pandas dataframe
 
-If this is completed successfully, the script will generate the graphs described above. The graphs will be saved as .png files in the same folder as the script.
+If this is completed successfully, the script will generate the graphs described above. The graphs will be saved as .png files in the same folder as the script and data.
 
 ### Troubleshooting
 
-* If the CSV upload does not occur correctly, the script will print: 
+If the CSV upload does not occur correctly, the script will print: 
 
 ```
 CSV file not found, please ensure that you have downloaded the 'items for antibacterial drugs per 1,000 patients on list.csv' file from the github repo and it is in the same folder as the python script.
 ```
-
-
-* To ensure you can see both figures, one must be closed before the other can be opened. 
+ 
 
 ### Data source
 
