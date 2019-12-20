@@ -8,10 +8,10 @@ import matplotlib.pyplot as plt
 #matplotlib is required to generate graphs
 
 try:
-    data = pd.read_csv('items for antibacterial drugs per 1,000 patients on list.csv',
-     delimiter=',', header = 0 ,  na_values = ['0', '.'])
+    data = pd.read_csv('antibiotic_data.csv', 
+        delimiter=',', header = 0 ,  na_values = ['0', '.'])
 except IOError as e:
-    print('CSV file not found, please ensure you have the file from the github repo titled filename and it is in the same folder as the pythin script')
+    print('CSV file not found, please ensure you have downloaded the antibiotic_data.csv rom the github repo titled filename and it is in the same folder as the python script')
 #Error handling ensures the CSV file containing the data has been downloaded and prompts users if it cannot be found
 #Reads in the csv with prescription data,
 #header ensures first row in csv file becomes dataframe headers,
@@ -31,18 +31,18 @@ final_data = data[null_values] #Removes all values that are labelled as NaN
 print(removed_entries_list , 'entries were deleted due to patient population not reported for this incidence, but GP data may exist in rest of the dataset')
 #Prints number of entries removed so user aware 
 
-#print('The following data is present in each year')
-#print(final_data)
+pd.options.mode.chained_assignment = None #The below code is flagging the 'SettingWithCopy' warning, to warn that the
+#operation may be being carried out on a copy. As the output is going into a new column, this is not an issue here.
+#Results have been mannually checked and they are as expected. This code turns off the warning
 
-final_data['patients/1000'] = final_data['total_list_size'] / (1000)
-#Creates new column in dataframe with patients per thousand
+final_data['items_per_1000'] = final_data['y_items'] / final_data['total_list_size'] * (1000)
+#Creates a new column which calculates the items_per_1000 patients 
 
-final_data['items_per_1000'] = final_data['y_items'] / final_data['patients/1000'] 
-#y_items is number of antibiotics pescribed by each GP per month/year shown in date 
-#Creates new column in dataframe with perscriptions per thousand patients
 
 final_data['date'] = pd.to_datetime(final_data['date'], format='%Y-%m-%d') 
 #Changes date column into datetime format recognised by python
+pd.options.mode.chained_assignment = None #warning disabled as above
+
 
 #final_data.groupby([pd.Grouper(key= 'date', freq='Y'), 'name']).mean()
 #final_data.groupby(pd.Grouper(key= 'date', freq='Y')).mean()
