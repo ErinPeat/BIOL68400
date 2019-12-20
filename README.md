@@ -13,14 +13,14 @@ After addtional packages have been imported, the script will attempt to load dat
 
 ### Troubleshooting
 
-If the CSV upload does not occur correctly, the script will print: 
+* If the CSV upload does not occur correctly, the script will print: 
 
 ```
 CSV file not found, please ensure you have downloaded the antibiotic_data.csv from the github repo titled filename and it is in the same folder as the python script.
 ```
 
 
-To ensure you can see both figures, one must be closed before the other can be opened. 
+* To ensure you can see both figures, one must be closed before the other can be opened. 
 
 ### Data source
 
