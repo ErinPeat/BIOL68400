@@ -2,12 +2,12 @@
 Code for BIOL68400
 Hello and welcome to our repo! 
 
-Before you can carry out any analysis, ensure you have the .csv downloaded which can be found in 'insert where we are going to put the file here!'
+Before you can carry out any analysis, ensure you have the antibiotic_data.csv downloaded which can be found in 'insert where we are going to put the file here!'
 as this will is the data required to carry out analysis using this code. 
 
 This code will enable
 
-After addtional packages have been imported, the script will attempt to load data from the filename.csv file and put it into a pandas dataframe
+After addtional packages have been imported, the script will attempt to load data from the antibiotic_data.csv file and put it into a pandas dataframe
 
 If this does not occur, py
 
