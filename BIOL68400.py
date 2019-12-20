@@ -31,12 +31,16 @@ def remove_null_values(df): #defining function to remove any null values from th
             removed_entries_list = removed_entries_list + 1
             #Count of times total list size is 0/NaN
 
-    final_data = df[null_values] #Removes all values that are labelled as NaN
+   
 
     print(removed_entries_list , 'entries were deleted due to patient population not reported for this incidence, but GP data may exist in rest of the dataset')
     #Prints number of entries removed so user aware 
 
 remove_null_values(data)
+
+null_values = pd.notnull(data['total_list_size'])
+    #Labels entries with total list size 0 as False
+final_data = data[null_values] #Removes all values that are labelled as NaN
 
 pd.options.mode.chained_assignment = None #The below code is flagging the 'SettingWithCopy' warning, to warn that the
 #operation may be being carried out on a copy. As the output is going into a new column, this is not an issue here.
