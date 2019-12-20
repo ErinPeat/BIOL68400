@@ -14,7 +14,7 @@ Before you start, you will need to download the 'items for antibacterial drugs p
 
 After addtional packages have been imported, the script will attempt to load data from the 'items for antibacterial drugs per 1,000 patients on list.csv' file and put it into a pandas dataframe
 
-If this is completed successfully, the script will generate the graphs described above
+If this is completed successfully, the script will generate the graphs described above. The graphs will be saved as .png files in the same folder as the script.
 
 ### Troubleshooting
 
@@ -29,7 +29,7 @@ CSV file not found, please ensure that you have downloaded the 'items for antiba
 
 ### Data source
 
-Data is taken from the https://openprescribing.net/analyse/, which selected data as 
+Data is taken from the https://openprescribing.net/analyse/, which selected data as: 
 
 * See prescribing of: 'drugs or BNF sections' & 'Antibacterial Drugs (5.1)'
 

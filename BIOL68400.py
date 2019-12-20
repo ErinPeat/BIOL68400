@@ -10,10 +10,10 @@ import matplotlib.pyplot as plt
 import sys
 
 try:
-    data = pd.read_csv('antibiotic_data.csv', 
+    data = pd.read_csv('items for antibacterial drugs per 1,000 patients on list.csv', 
         delimiter=',', header = 0 ,  na_values = ['0', '.'])
 except IOError:
-    print('Error: CSV file not found, please ensure you have downloaded the antibiotic_data.csv from the github repo titled filename and it is in the same folder as the python script')
+    print('Error: CSV file not found, please ensure you have downloaded the "items for antibacterial drugs per 1,000 patients on list.csv" from the github repo titled filename and it is in the same folder as the python script')
     sys.exit(1) #Error handling ensures the CSV file containing the data has been downloaded. Prompts users if it cannot be found and terminates the script.
 
 #Reads in the csv with prescription data,
@@ -31,7 +31,6 @@ def remove_null_values(df): #defining function to remove any null values from th
             removed_entries_list = removed_entries_list + 1
             #Count of times total list size is 0/NaN
 
-   
 
     print(removed_entries_list , 'entries were deleted due to patient population not reported for this incidence, but GP data may exist in rest of the dataset')
     #Prints number of entries removed so user aware 
@@ -69,7 +68,8 @@ axes_line.set_ylim([40,60]) #setting value parameters for the Y access
 axes_line.set_ylabel('Mean items per 1000 patients') #Labellong Y and X access and creating a title
 axes_line.set_xlabel('Year')
 axes_line.set_title('Mean antibiotic pescriptions per 1000 patients for all Manchester GPs 2015-2018')
-plt.show()
+plt.savefig('prescriptions_all_gps_linegraph.png', bbox_inches='tight')
+
 
 print('Line graph output has been saved to folder')
 
@@ -80,5 +80,5 @@ axes_boxplot.set_xlabel(''); #Setting blank labels and naming others axis
 axes_boxplot.set_ylabel('Items per thousand patients')
 axes_boxplot.set_title('Items per 1000 per practice')
 plt.suptitle('');  # Getting rid of pandas-generated boxplot title
-plt.show() 
+plt.savefig('prescriptions_per_gp_boxplot.png', bbox_inches='tight')
 print('Box plot output has been saved to folder')
