@@ -10,36 +10,34 @@ import matplotlib.pyplot as plt
 import sys
 
 try:
-    data = pd.read_csv('items_for_antibacterial_drugs_per_1000_patients_on_list.csv', 
-        delimiter=',', header = 0 ,  na_values = ['0', '.'])
+    data = pd.read_csv('items_for_antibacterial_drugs_per_1000_patients_on_list.csv', delimiter=',', header = 0 ,  na_values = ['0', '.'])
 except IOError:
-    print('Error: CSV file not found, please ensure you have downloaded the "items_for_antibacterial_drugs_per_1000_patients_on_list.csv" from the github repo titled filename and it is in the same folder as the python script')
+    print('Error: CSV file not found, please ensure you have downloaded the "items_for_antibacterial_drugs_per_1000_patients_on_list.csv" from the github repo and it is in the same folder as the python script')
     sys.exit(1) #Error handling ensures the CSV file containing the data has been downloaded. Prompts users if it cannot be found and terminates the script.
 
+print(data)
 #Reads in the csv with prescription data,
 #header ensures first row in csv file becomes dataframe headers,
 #na_values: all 0s converted to NaN
 
-def remove_null_values(df): #defining function to remove any null values from the dataframe
+null_values = pd.notnull(data['total_list_size'])
+#defines the variable 'null_values' as the NaN values in the column total_list_size
 
-    null_values = pd.notnull(df['total_list_size'])
-    #Labels entries with total list size 0 as False
-
+def reporting_null_values(df): #defining function to count where the total list size reported by the GP in that entry was 0, to feedback to the user
+    
     removed_entries_list = 0 #Counter for below loop
     for bools in null_values:
         if bools == False: 
             removed_entries_list = removed_entries_list + 1
-            #Count of times total list size is 0/NaN
+            #Count of entries(rows) that total_list_size is NaN, adds 1 to the removed_entries_list each time a NaN value is found. 
 
 
-    print(removed_entries_list , 'entries were deleted due to patient population not reported for this incidence, but GP data may exist in rest of the dataset')
+    print(removed_entries_list , 'entries were deleted as the GP had not specified their patient population on the entry. Other completed entries from the same GPs may still exist in the dataset')
     #Prints number of entries removed so user aware 
 
-remove_null_values(data)
+reporting_null_values(data) #Using above defined function on the dataframe called 'data'
 
-null_values = pd.notnull(data['total_list_size'])
-    #Labels entries with total list size 0 as False
-final_data = data[null_values] #Removes all values that are labelled as NaN
+final_data = data[null_values] #Creates a new dataframe called 'final_data' with all the rows which have NaN in the total_list_size column removed
 
 pd.options.mode.chained_assignment = None #The below code is flagging the 'SettingWithCopy' warning, to warn that the
 #operation may be being carried out on a copy. As the output is going into a new column, this is not an issue here.
@@ -54,10 +52,6 @@ final_data['date'] = pd.to_datetime(final_data['date'], format='%Y-%m-%d')
 pd.options.mode.chained_assignment = None #warning disabled as above
 
 
-#final_data.groupby([pd.Grouper(key= 'date', freq='Y'), 'name']).mean()
-#final_data.groupby(pd.Grouper(key= 'date', freq='Y')).mean()
-
-
 line_graph = final_data.groupby(pd.Grouper(key= 'date', freq='Y')).mean()['items_per_1000'].plot(legend=True) 
 #grouby groups items from the dataframe as specified. 
 #Grouper seperates the date column and groups everything just by year.
@@ -68,7 +62,7 @@ axes_line = plt.gca() #gca = get current access
 axes_line.set_ylim([40,60]) #setting value parameters for the Y access
 axes_line.set_ylabel('Mean items per 1000 patients') #Labelling Y and X access and creating a title
 axes_line.set_xlabel('Year')
-axes_line.set_title('Mean antibiotic pescriptions per 1000 patients for all Manchester GPs 2015-2018')
+axes_line.set_title('Mean antibiotic pescriptions per 1000 patients')
 plt.savefig('prescriptions_all_gps_linegraph.png', bbox_inches='tight') 
 #saves the linegraph as a png file. 'tight' = removes white border
 
