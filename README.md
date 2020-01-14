@@ -2,10 +2,10 @@
 
 Hello and welcome to our repo! 
 
-This code will has been written for the purposes of analysing antibiotic prescription data by GP practice from the OpenPrescribing project. When run, this code will produce:
-* remove any entries where the GP practice reported they had 0 patients for that months entry and tells you how many were removed
-* a line graph showing the mean number of antibiotic prescriptions per year for the whole CCG and time period
-* a boxplot of the total antibiotic prescriptions per year for each GP practice in the CCG
+This code will has been written for the purposes of analysing antibiotic prescription data by GP practice from the OpenPrescribing project. When run, this code will:
+* remove any entries where the GP practice reported they had 0 patients for that months entry, before graphs are generated  * tell you how many etnries were removed
+* produce a line graph showing the mean number of antibiotic prescriptions per year for the whole CCG and time period
+* produce a boxplot of the total antibiotic prescriptions per year for each GP practice in the CCG
 
 ### Getting started
 
