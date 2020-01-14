@@ -2,9 +2,10 @@
 
 Hello and welcome to our repo! 
 
-This code will has been written for the purposes of analysing antibiotic prescription data by GP practice from the OpenPrescribing project. When run, this code will produce:
-* a line graph showing the mean number of antibiotic prescriptions per year for the whole CCG and time period
-* a boxplot of the total antibiotic prescriptions per year for each GP practice in the CCG
+This code will has been written for the purposes of analysing antibiotic prescription data by GP practice from the OpenPrescribing project. When run, this code will:
+* before graphs are generated it will remove any entries where the GP practice reported they had 0 patients for that month and tell you how many entries were removed
+* produce a line graph showing the mean number of antibiotic prescriptions per year for the whole CCG and time period
+* produce a boxplot of the total antibiotic prescriptions per year for each GP practice in the CCG
 
 ### Getting started
 
@@ -12,7 +13,7 @@ Before you start, you will need to download the 'items_for_antibacterial_drugs_p
 
 #### Please ensure that you have saved the script and the data in the same folder! The script will not run otherwise!
 
-After addtional packages have been imported, the script will attempt to load data from the 'items_for antibacterial_drugs_per_1000patients_on_list.csv' file and put it into a pandas dataframe
+After addtional packages have been imported, the script will attempt to load data from the 'items_for antibacterial_drugs_per_1000_patients_on_list.csv' file and put it into a pandas dataframe
 
 If this is completed successfully, the script will generate the graphs described above. The graphs will be saved as png files in the same folder as the script and data.
 
